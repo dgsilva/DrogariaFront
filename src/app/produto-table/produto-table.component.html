@@ -1,0 +1,39 @@
+<h2>Listagem de Produto</h2>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Codigo:</th>
+            <th>Nome:</th>
+            <th>Quantidade:</th>
+            <th>Preço:</th>
+            <th>Data:</th>
+            <th>Categoria:</th>
+            <th>Opções:</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let p of produtos">
+            <td>{{p.codigo}}</td>
+            <td>{{p.nome}}</td>
+            <td>{{p.quantidade}}</td>
+            <td>{{p.preco | currency: 'BRL'}}</td>
+            <td>{{p.dataDeValidade | date: 'dd/MM/yyyy'}}</td>
+            <td>{{p.categoria.nome}}</td>
+
+            <td>
+                <a class="btn btn-primary mr-2" routerLink="/produtoedit/{{p.codigo}}">
+                    Editar
+                </a>
+
+                <a class="btn btn btn-danger" routerLink="/produtodeletar/{{p.codigo}}">
+                    Deletar
+                </a>
+            </td> 
+        </tr>
+
+    </tbody>
+</table>

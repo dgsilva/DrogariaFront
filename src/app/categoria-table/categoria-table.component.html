@@ -1,0 +1,33 @@
+<h2>Listagem</h2>
+
+<table class="table table-bordered">
+
+<thead>
+  <tr>
+      <th>Codigo</th>
+      <th>Nome</th>
+      <th>Options</th>
+  </tr>
+
+</thead>
+
+<tbody>
+    <tr *ngFor="let c of categorias">
+        <td>{{c.codigo}}</td>
+        <td>{{c.nome}}</td>
+    
+        <td>
+            <a class="btn btn-primary mr-2" routerLink="/categoriaedit/{{c.codigo}}"  >
+                Editar
+            </a>
+
+            <a class="btn btn btn-danger" routerLink="/categoriadeletar/{{c.codigo}}" >
+                Deletar
+            </a>
+
+
+        </td>
+    </tr>
+
+</tbody>
+</table>
