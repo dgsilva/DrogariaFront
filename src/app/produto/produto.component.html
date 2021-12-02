@@ -1,52 +1,124 @@
-<form>
+<form [formGroup]="formCadastro">
     <h1>Cadastro de Produto</h1>
+
+
+    <div *ngIf="mensagem_sucesso" class="alert alert-success">
+        Sucesso: <strong>{{mensagem_sucesso}}</strong>
+    </div>
+
+    <div *ngIf="mensagem_erro" class="alert alert-danger">
+        Erro: <strong>{{mensagem_erro}}</strong>
+    </div>
     
 
     <div class="form-group row">
         <div class="col-sm-6">
-            <label for="categoria" class="col-sm-2 col-form-label">Nome:</label>
+            <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
             <input type="text" class="form-control" autocomplete="off" name="nome"  
-                placeholder="Digite o nome do Produto" [(ngModel)]="produto.nome">
+                placeholder="Digite o nome do Produto" [(ngModel)]="produto.nome" formControlName="nome" required="true">
+                
+                <div class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
+ 
+                    <div *ngIf="form.nome.errors.required">
+                        Por favor, informe o nome do produto.
+                    </div>
+
+                    <div *ngIf="form.nome.errors.minlength">
+                        Por favor, informe no mínimo 10 caracteres.
+                    </div>
+
+                    <div *ngIf="form.nome.errors.maxlength">
+                        Por favor, informe no máximo 150 caracteres.
+                    </div>
+
+                </div>
         </div>
     </div> 
 
 
         <div class="form-group row">
             <div class="col-sm-6">
-                <label for="categoria" class="col-sm-2 col-form-label">quantidade:</label>
+                <label for="quantidade" class="col-sm-2 col-form-label">quantidade:</label>
                 <input type="number" class="form-control"  name="quantidade" [(ngModel)]="produto.quantidade" 
-                    placeholder="Digite a quantidade do produto">
+                    placeholder="Digite a quantidade do produto" formControlName="quantidade">
+                    <div class="text-danger" *ngIf="form.quantidade.touched && form.quantidade.invalid">
+ 
+                        <div *ngIf="form.quantidade.errors.required">
+                            Por favor, informe a quantidade.
+                        </div>
+    
+                        <div *ngIf="form.quantidade.errors.minlength">
+                            Por favor, informe no mínimo 10 caracteres.
+                        </div>
+    
+                        <div *ngIf="form.quantidade.errors.maxlength">
+                            Por favor, informe no máximo 150 caracteres.
+                        </div>
+    
+                    </div>
             </div>
         </div> 
 
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <label for="categoria" class="col-sm-2 col-form-label">Preço:</label>
+                    <label for="preco" class="col-sm-2 col-form-label">Preço:</label>
                     <input type="number" class="form-control"  name="preco" [(ngModel)]="produto.preco" 
-                        placeholder="Digite o valor do produto">
+                        placeholder="Digite o valor do produto" formControlName="preco">
+                        <div class="text-danger" *ngIf="form.preco.touched && form.preco.invalid">
+ 
+                            <div *ngIf="form.preco.errors.required">
+                                Por favor, informe o preço.
+                            </div>
+        
+                            <div *ngIf="form.preco.errors.minlength">
+                                Por favor, informe no mínimo 10 caracteres.
+                            </div>
+        
+                            <div *ngIf="form.preco.errors.maxlength">
+                                Por favor, informe no máximo 150 caracteres.
+                            </div>
+        
+                        </div>
+                        
                 </div>
             </div> 
 
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <label for="categoria" class="col-sm-2 col-form-label">Data:</label>
+                        <label for="dataDeValidade" class="col-sm-2 col-form-label">Data:</label>
                         <input type="date" class="form-control"  name="dataDeValidade" [(ngModel)]="produto.dataDeValidade" 
-                            placeholder="A data do produto">
+                            placeholder="A data do produto" formControlName="dataDeValidade">
+                            <div class="text-danger" *ngIf="form.dataDeValidade.touched && form.dataDeValidade.invalid">
+ 
+                                <div *ngIf="form.dataDeValidade.errors.required">
+                                    Por favor, informe a data do produto.
+                                </div>
+                            </div>
+                            
                     </div>
                 </div>
 
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <label for="categoria" class="col-sm-2 col-form-label">Categoria:</label>
-                            <select [(ngModel)]="produto.categoria.codigo" id="categoria" name="categoria" class="form-control">
+                            <select [(ngModel)]="produto.categoria.codigo" id="categoria" name="categoria" class="form-control" formControlName="categoria">
                                 <option [value]="c.codigo" *ngFor="let c of categorias">{{c.nome}}</option>
                             </select>
+
+                            <div class="text-danger" *ngIf="form.categoria.touched && form.categoria.invalid">
+ 
+                                <div *ngIf="form.categoria.errors.required">
+                                    Por favor, informe a categoria do produto
+                                </div>
+                            </div>
+
+
                         </div>
     
     </div>
 
-    <button  class="btn btn-success" (click)="save()">Salvar</button>
+    <button  class="btn btn-success" (click)="save()"  [disabled]="!formCadastro.valid">Salvar</button>
 
 
 </form>

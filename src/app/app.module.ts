@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { CategoriaCreateComponent } from './categoria-create/categoria-create.component';
 import { CategoriaTableComponent } from './categoria-table/categoria-table.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { ProdutoTableComponent } from './produto-table/produto-table.component';
@@ -34,7 +34,8 @@ import { ProdutosService } from './services/produtos.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [CatergoriaService,ProdutosService],
   bootstrap: [AppComponent]
